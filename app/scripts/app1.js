@@ -155,6 +155,14 @@ var app= angular.module('confusionApp', []);
         app.controller('DishCommentController', ['$scope', function($scope) {
             
             //Step 1: Create a JavaScript object to hold the comment from the form
+           var com1 ={
+                name:"",
+                rating:"",
+                comment:""
+            };
+            $scope.com1=com1;
+           
+            console.log(com1);
             
             $scope.submitComment = function () {
                 
