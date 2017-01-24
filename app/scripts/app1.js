@@ -71,7 +71,7 @@ var app= angular.module('confusionApp', []);
             $scope.toggleDetails = function() {
                 $scope.showDetails = !$scope.showDetails;
             };
-        }])
+        }]);
 
         app.controller('ContactController', ['$scope', function($scope) {
 
@@ -115,31 +115,31 @@ var app= angular.module('confusionApp', []);
                           description:'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
                            comments: [
                                {
-                                   rating:5,
+                                   rating:"5",
                                    comment:"Imagine all the eatables, living in conFusion!",
                                    author:"John Lemon",
                                    date:"2012-10-16T17:57:28.556094Z"
                                },
                                {
-                                   rating:4,
+                                   rating:"4",
                                    comment:"Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
                                    author:"Paul McVites",
                                    date:"2014-09-05T17:57:28.556094Z"
                                },
                                {
-                                   rating:3,
+                                   rating:"3",
                                    comment:"Eat it, just eat it!",
                                    author:"Michael Jaikishan",
                                    date:"2015-02-13T17:57:28.556094Z"
                                },
                                {
-                                   rating:4,
+                                   rating:"4",
                                    comment:"Ultimate, Reaching for the stars!",
                                    author:"Ringo Starry",
                                    date:"2013-12-02T17:57:28.556094Z"
                                },
                                {
-                                   rating:2,
+                                   rating:"2",
                                    comment:"It's your birthday, we're gonna party!",
                                    author:"25 Cent",
                                    date:"2011-12-02T17:57:28.556094Z"
@@ -149,25 +149,31 @@ var app= angular.module('confusionApp', []);
                     };
             
             $scope.dish = dish;
-            
-        }])
-
+            }]);
+       
         app.controller('DishCommentController', ['$scope', function($scope) {
             
             //Step 1: Create a JavaScript object to hold the comment from the form
-           var com1 ={
-                name:"",
-                rating:"",
-                comment:""
-            };
+           var com1 =[{
+                rating:"5",
+                comment:"",
+                author:"",
+                date:""
+            }];
             $scope.com1=com1;
            
-            console.log(com1);
+         
             
             $scope.submitComment = function () {
                 
+                
 //                //Step 2: This is how you record the date
-//                "The date property of your JavaScript object holding the comment" = new Date().toISOString();
+//                "The date property of your JavaScript object holding the comment" = 
+                var date = new Date().toISOString();
+                $scope.com1.date =date;
+                console.log($scope.com1.date);
+                $scope.dish.comments.push({rating:$scope.com1.rating,comment:$scope.com1.comment,author:$scope.com1.author,date:$scope.com1.date});
+                
 //                
 //                // Step 3: Push your comment into the dish's comment array
 //                $scope.dish.comments.push("Your JavaScript Object holding the comment");
@@ -175,7 +181,17 @@ var app= angular.module('confusionApp', []);
                 //Step 4: reset your form to pristine
                 
                 //Step 5: reset your JavaScript object that holds your comment
+                $scope.com1.author="";
+                $scope.com1.rating="";
+                $scope.com1.comment="";
+                $scope.com1.date="";
+                $scope.commentForm.$setPristine();
+                
             }
-        }])
+        }]);
+            
+            
+         
+
 
 ;
