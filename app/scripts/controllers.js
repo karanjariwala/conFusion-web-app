@@ -68,13 +68,10 @@ app.controller('FeedbackController', ['$scope', function($scope) {
 
         }]);
 
-app.controller('DishDetailController', ['$scope','menuFactory','$routeParams', function($scope,menuFactory,$routeParams) {
-
-            var dish= menuFactory.getDish(parseInt($routeParams._id,10));                      
-              $scope.dish = dish;
-            
-            // $scope.dish = menuFactory.getDish();
-            }]);
+        app.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
+            var dish= menuFactory.getDish(parseInt($stateParams.id,10));
+                        $scope.dish = dish;
+                    }])
        
         app.controller('DishCommentController', ['$scope', function($scope) {
             
